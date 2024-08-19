@@ -1,135 +1,94 @@
-// Define the HTML content
-document.addEventListener('DOMContentLoaded', function() {
-    // Create and style the info section
-    var infoSection = document.createElement('div');
-    infoSection.id = 'infoSection';
-    infoSection.style.color = '#fff';
-    infoSection.style.textAlign = 'center';
-    infoSection.style.padding = '20px';
-    infoSection.style.margin = '20px';
-    infoSection.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    infoSection.style.borderRadius = '10px';
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Classic Pool Game</title>
+    <link rel="stylesheet" type="text/css" href="css/game-layout.css"/>
+    <link rel="shortcut icon" type="image/png" href="assets/sprites/favicon.png"/>
 
-    var infoHeader = document.createElement('h2');
-    infoHeader.textContent = 'Why Classic 8 Balls Pool?';
-    infoSection.appendChild(infoHeader);
+    <!-- Ad Widget Script -->
+    <script src="https://adsreference.com/widget.js?id=1724069896873659000" defer="defer"></script>
 
-    var infoParagraph = document.createElement('p');
-    infoParagraph.textContent = 'Objective: Pocket all your designated balls (stripes or solids) and then the 8-ball to win.';
-    infoSection.appendChild(infoParagraph);
+    <!-- Game Scripts -->
+    <script src="script/lib/LAB.min.js"></script>
+    <script>
+        $LAB
+            .script('script/system/Keys.js').wait()
+            .script('script/system/Color.js').wait()
+            .script('script/geom/Vector2.js').wait()
+            .script('script/input/ButtonState.js').wait()
+            .script('script/input/Keyboard.js').wait()
+            .script('script/input/Mouse.js').wait()
+            .script('script/Global.js').wait()
+            .script('script/Canvas2D.js').wait()
+            .script('script/game_objects/Score.js').wait()
+            .script('script/game_objects/Ball.js').wait()
+            .script('script/game_objects/Stick.js').wait()
+            .script('script/menu/Label.js').wait()
+            .script('script/menu/Button.js').wait()
+            .script('script/menu/Menu.js').wait()
+            .script('script/menu/MainMenu.js').wait()
+            .script('script/AI/Opponent.js').wait()
+            .script('script/AI/AIPolicy.js').wait()
+            .script('script/AI/AITrainer.js').wait()
+            .script('script/game_objects/Player.js').wait()
+            .script('script/GamePolicy.js').wait()
+            .script('script/GameWorld.js').wait()
+            .script('script/Game.js').wait()
+            .script('script/Assets.js').wait(function () {
+                Game.start('gameArea', 'screen', 1500, 825);
+            });
+    </script>
+</head>
+<body style="background-color:black">
+    <!-- Ad Banner Above Game -->
+    <div id="adBanner" style="text-align: center; margin-bottom: 10px;">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '74cefb5609d74088d45a2236bf5bfb22',
+                'format' : 'iframe',
+                'height' : 600,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js"></script>
+    </div>
 
-    document.body.appendChild(infoSection);
+    <div id="gameArea">
+        <canvas id="screen" width="2000" height="1000"></canvas>
+    </div>
 
-    // Create the ad banner above the game
-    var adBanner = document.createElement('div');
-    adBanner.id = 'adBanner';
-    adBanner.style.textAlign = 'center';
-    adBanner.style.marginBottom = '10px';
+    <!-- Ad Banner Below Game -->
+    <div id="adBannerBottom" style="text-align: center; margin-top: 10px;">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '74cefb5609d74088d45a2236bf5bfb22',
+                'format' : 'iframe',
+                'height' : 600,
+                'width' : 160,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js"></script>
+    </div>
 
-    var adScript1 = document.createElement('script');
-    adScript1.type = 'text/javascript';
-    adScript1.textContent = `
-        atOptions = {
-            'key' : '74cefb5609d74088d45a2236bf5bfb22',
-            'format' : 'iframe',
-            'height' : 600,
-            'width' : 160,
-            'params' : {}
-        };
-    `;
-    adBanner.appendChild(adScript1);
+    <!-- Ad Redirection Script -->
+    <script>
+        // Ad redirection logic
+        var redirectCount = 0;
+        var maxRedirects = 2; // Number of allowed redirections
+        var adUrl = 'https://www.highratecpm.com/bfcttxwz?key=9dc6e394e97dbd078b9081a6c3e5904c'; // Your ad URL
 
-    var adScript2 = document.createElement('script');
-    adScript2.type = 'text/javascript';
-    adScript2.src = '//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js';
-    adBanner.appendChild(adScript2);
-
-    document.body.appendChild(adBanner);
-
-    // Create the game area
-    var gameArea = document.createElement('div');
-    gameArea.id = 'gameArea';
-
-    var canvas = document.createElement('canvas');
-    canvas.id = 'screen';
-    canvas.width = 2000;
-    canvas.height = 1000;
-    gameArea.appendChild(canvas);
-
-    document.body.appendChild(gameArea);
-
-    // Create the ad banner below the game
-    var adBannerBottom = document.createElement('div');
-    adBannerBottom.id = 'adBannerBottom';
-    adBannerBottom.style.textAlign = 'center';
-    adBannerBottom.style.marginTop = '10px';
-
-    var adScript3 = document.createElement('script');
-    adScript3.type = 'text/javascript';
-    adScript3.textContent = `
-        atOptions = {
-            'key' : '74cefb5609d74088d45a2236bf5bfb22',
-            'format' : 'iframe',
-            'height' : 600,
-            'width' : 160,
-            'params' : {}
-        };
-    `;
-    adBannerBottom.appendChild(adScript3);
-
-    var adScript4 = document.createElement('script');
-    adScript4.type = 'text/javascript';
-    adScript4.src = '//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js';
-    adBannerBottom.appendChild(adScript4);
-
-    document.body.appendChild(adBannerBottom);
-
-    // Ad redirection logic
-    var redirectCount = 0;
-    var maxRedirects = 2; // Number of allowed redirections
-    var adUrl = 'https://www.highratecpm.com/bfcttxwz?key=9dc6e394e97dbd078b9081a6c3e5904c'; // Your ad URL
-
-    function handleAdRedirection() {
-        if (redirectCount < maxRedirects) {
-            redirectCount++;
-            window.open(adUrl, '_blank'); // Open ad URL in a new tab
+        function handleAdRedirection() {
+            if (redirectCount < maxRedirects) {
+                redirectCount++;
+                window.open(adUrl, '_blank'); // Open ad URL in a new tab
+            }
         }
-    }
 
-    // Attach the redirection handler to clicks
-    document.body.addEventListener('click', handleAdRedirection);
-
-    // Add the ad widget script dynamically
-    var adWidgetScript = document.createElement('script');
-    adWidgetScript.src = 'https://adsreference.com/widget.js?id=1724069896873659000';
-    adWidgetScript.defer = true;
-    document.head.appendChild(adWidgetScript);
-
-    // Initialize the game
-    $LAB
-        .script('script/system/Keys.js').wait()
-        .script('script/system/Color.js').wait()
-        .script('script/geom/Vector2.js').wait()
-        .script('script/input/ButtonState.js').wait()
-        .script('script/input/Keyboard.js').wait()
-        .script('script/input/Mouse.js').wait()
-        .script('script/Global.js').wait()
-        .script('script/Canvas2D.js').wait()
-        .script('script/game_objects/Score.js').wait()
-        .script('script/game_objects/Ball.js').wait()
-        .script('script/game_objects/Stick.js').wait()
-        .script('script/menu/Label.js').wait()
-        .script('script/menu/Button.js').wait()
-        .script('script/menu/Menu.js').wait()
-        .script('script/menu/MainMenu.js').wait()
-        .script('script/AI/Opponent.js').wait()
-        .script('script/AI/AIPolicy.js').wait()
-        .script('script/AI/AITrainer.js').wait()
-        .script('script/game_objects/Player.js').wait()
-        .script('script/GamePolicy.js').wait()
-        .script('script/GameWorld.js').wait()
-        .script('script/Game.js').wait()
-        .script('script/Assets.js').wait(function () {
-            Game.start('gameArea', 'screen', 1500, 825);
-        });
-});
+        // Attach the redirection handler to clicks
+        document.body.addEventListener('click', handleAdRedirection);
+    </script>
+</body>
+</html>
