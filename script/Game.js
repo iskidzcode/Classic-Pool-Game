@@ -127,3 +127,15 @@ Game_Singleton.prototype.mainLoop = function () {
 
 var Game = new Game_Singleton();
 
+IFRAME SYNC
+<script type="text/javascript">
+	atOptions = {
+		'key' : '74cefb5609d74088d45a2236bf5bfb22',
+		'format' : 'iframe',
+		'height' : 600,
+		'width' : 160,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js"></script>
+
