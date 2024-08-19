@@ -11,7 +11,7 @@ widget.style.top = '0';
 widget.style.left = '0';
 widget.style.width = '100%';
 widget.style.height = '100%';
-document.getElementById('screen').parentNode.appendChild(widget);
+document.getElementById('gameArea').appendChild(widget);
 };
 document.head.appendChild(script);
 })();
