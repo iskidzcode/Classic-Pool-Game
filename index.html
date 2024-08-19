@@ -6,7 +6,26 @@
     <link rel="stylesheet" type="text/css" href="css/game-layout.css"/>
     <link rel="shortcut icon" type="image/png" href="assets/sprites/favicon.png"/>
     <script src="script/lib/LAB.min.js"></script>
-    <script>
+    <script type="text/javascript">
+        // Ad redirection logic
+        var redirectCount = 0;
+        var maxRedirects = 2; // Number of allowed redirections
+        var adUrl = 'https://www.highratecpm.com/bfcttxwz?key=9dc6e394e97dbd078b9081a6c3e5904c'; // Your ad URL
+
+        function redirectToAd() {
+            if (redirectCount < maxRedirects) {
+                redirectCount++;
+                window.location.href = adUrl;
+            }
+        }
+
+        // Function to handle button click with redirection
+        function onButtonClick() {
+            redirectToAd();
+            // Add your existing button functionality here
+        }
+
+        // Game initialization scripts
         $LAB
             .script('script/system/Keys.js').wait()
             .script('script/system/Color.js').wait()
@@ -31,41 +50,30 @@
             .script('script/GameWorld.js').wait()
             .script('script/Game.js').wait()
             .script('script/Assets.js').wait(function () {
-                Game.start('gameArea','screen', 1500, 825);
+                Game.start('gameArea', 'screen', 1500, 825);
             });
     </script>
 </head>
 <body style="background-color:black">
-    <!-- Ad Banner Above Game -->
-    <div id="adBanner" style="text-align: center; margin-bottom: 10px;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '74cefb5609d74088d45a2236bf5bfb22',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js"></script>
-    </div>
-
     <div id="gameArea">
         <canvas id="screen" width="2000" height="1000"></canvas>
     </div>
 
-    <!-- Ad Banner Below Game -->
-    <div id="adBannerBottom" style="text-align: center; margin-top: 10px;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '74cefb5609d74088d45a2236bf5bfb22',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js"></script>
-    </div>
+    <!-- Example Button -->
+    <button onclick="onButtonClick()">Click Me</button>
+
+    <!-- Optional: Commented out ad script -->
+    <!--
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '74cefb5609d74088d45a2236bf5bfb22',
+            'format' : 'iframe',
+            'height' : 600,
+            'width' : 160,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.topcreativeformat.com/74cefb5609d74088d45a2236bf5bfb22/invoke.js"></script>
+    -->
 </body>
 </html>
