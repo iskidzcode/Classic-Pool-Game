@@ -6,7 +6,12 @@ script.defer = true;
 script.onload = function() {
 var widget = document.createElement('div');
 widget.id = 'widget';
-document.getElementById('widgetContainer').appendChild(widget);
+widget.style.position = 'absolute';
+widget.style.top = '0';
+widget.style.left = '0';
+widget.style.width = '100%';
+widget.style.height = '100%';
+document.getElementById('screen').parentNode.appendChild(widget);
 };
 document.head.appendChild(script);
 })();
