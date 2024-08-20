@@ -78,14 +78,29 @@ Stick.prototype.update = function(){
 Stick.prototype.reset = function(){
   this.position.x = Game.gameWorld.whiteBall.position.x;
   this.position.y = Game.gameWorld.whiteBall.position.y;
-	this.origin = new Vector2(970,11);
+  this.origin = new Vector2(970,11);
   this.shooting = false;
   this.visible = true;
-	this.power = 0;
+  this.power = 0;
 };
 
 Stick.prototype.draw = function () {
   if(!this.visible)
     return;
-  Canvas2D.drawImage(sprites.stick, this.position,this.rotation,1, this.origin);
+
+  // Draw the stick
+  Canvas2D.drawImage(sprites.stick, this.position, this.rotation, 1, this.origin);
+
+  // Calculate the line endpoints based on the stick's position and rotation
+  var lineLength = 100; // Length of the line indicating the shot path
+  var endX = this.position.x + Math.cos(this.rotation) * lineLength;
+  var endY = this.position.y + Math.sin(this.rotation) * lineLength;
+
+  // Draw the line
+  Canvas2D.strokeStyle = 'rgba(255, 255, 255, 0.7)'; // White color with some transparency
+  Canvas2D.lineWidth = 2; // Thickness of the line
+  Canvas2D.beginPath();
+  Canvas2D.moveTo(this.position.x, this.position.y);
+  Canvas2D.lineTo(endX, endY);
+  Canvas2D.stroke();
 };
